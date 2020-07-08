@@ -58,4 +58,10 @@ print("------------------------------------------------------")
 print("Winner: " + winner)
 print("------------------------------------------------------")
 
-python /PyPoll/Analysis/main.py > /Desktop/pypoll.txt
+# Set variable for output file
+output_file = os.path.join("Pypoll_main.csv")
+
+#  Open the output file
+with open(output_file, "w") as datafile:
+    writer = csv.writer(datafile)
+# python /PyPoll/Analysis/main.py > Pypol_main.txt

@@ -44,4 +44,9 @@ with open(csvpath) as csv_file:
     print("Greatest Monthly Increase in Profits " + max_month + " ($" + str(max_increase) + ")")
     print("Greatest Monthly Increase in Profits " + min_month + " ($" + str(min_increase) + ")")
 
-    
+# Set variable for output file
+output_file = os.path.join("Pybank_main.csv")
+
+#  Open the output file
+with open(output_file, "w") as datafile:
+    writer = csv.writer(datafile)
