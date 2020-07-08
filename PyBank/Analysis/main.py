@@ -1,9 +1,10 @@
 import os
 import csv
+import sys
 
 total = 0
 month = 0
-csvpath = os.path.join("PyBank", "Resources", "budget_data.csv")
+csvpath = os.path.join("Resources", "budget_data.csv")
 
 Date = []
 Profit_losses = []
@@ -44,9 +45,15 @@ with open(csvpath) as csv_file:
     print("Greatest Monthly Increase in Profits " + max_month + " ($" + str(max_increase) + ")")
     print("Greatest Monthly Increase in Profits " + min_month + " ($" + str(min_increase) + ")")
 
-# Set variable for output file
-output_file = os.path.join("Pybank_main.csv")
 
-#  Open the output file
-with open(output_file, "w") as datafile:
-    writer = csv.writer(datafile)
+sys.stdout = open("Pybank.txt", "w")
+
+print('Financial Analysis')
+print("-------------------------------------")
+print("Total Months: " + str(month))
+print("Total:", ('${0}'.format(format(total))))
+print("Total Average Change:", ('${0}'.format(format(average_change, ',.2f'))))
+print("Greatest Monthly Increase in Profits " + max_month + " ($" + str(max_increase) + ")")
+print("Greatest Monthly Increase in Profits " + min_month + " ($" + str(min_increase) + ")")
+
+sys.stdout.close()

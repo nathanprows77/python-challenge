@@ -1,5 +1,6 @@
 import os
 import csv
+import sys
 
 total = 0
 candidate = 0
@@ -7,7 +8,7 @@ votes = 0
 Vote_percent = 0
 
 #Import csv file
-poll_csv = os.path.join("PyPoll", "Resources", "election_data.csv")
+poll_csv = os.path.join("Resources", "election_data.csv")
 
 #Define columns as lists
 Voter_ID = []
@@ -58,10 +59,22 @@ print("------------------------------------------------------")
 print("Winner: " + winner)
 print("------------------------------------------------------")
 
-# Set variable for output file
-output_file = os.path.join("Pypoll_main.csv")
+sys.stdout = open("PyPoll.txt", "w")
 
-#  Open the output file
-with open(output_file, "w") as datafile:
-    writer = csv.writer(datafile)
-# python /PyPoll/Analysis/main.py > Pypol_main.txt
+print("Election Results")
+print("------------------------------------------------------")
+print("Total Votes: ", Total_Votes)
+print("------------------------------------------------------")
+high_score = 0
+winner = ""
+for candidate in Unique_Candidate_List:
+    Vote_percent[candidate] = (Vote_count[candidate] / Total_Votes) * 100
+    print(candidate + ": " + str(round(Vote_percent[candidate], 3)) + "% (" + str(Vote_count[candidate]) + ")")
+    if Vote_count[candidate] > high_score:
+        high_score = Vote_count[candidate]
+        winner = candidate
+print("------------------------------------------------------")
+print("Winner: " + winner)
+print("------------------------------------------------------")
+
+sys.stdout.close()
